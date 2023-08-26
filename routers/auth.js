@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Notification, Login7CE, Login7IT } = require("../model/user"); 
+const { HomeScreen, Login7CE, Login7IT, Company } = require("../model/user"); 
 const jwt = require("jsonwebtoken");
 
 // POST: Create a new notification
@@ -8,13 +8,13 @@ router.post("/homeScreenData", async (req, res) => {
   try {
     const { title, date, description } = req.body;
 
-    const newNotification = new Notification({
+    const newHomeScreen = new HomeScreen({
       title,
       date,
       description,
     });
 
-    await newNotification.save();
+    await newHomeScreen.save();
 
     res.status(201).json({ message: "Notification created successfully" });
   } catch (error) {
@@ -26,7 +26,7 @@ router.post("/homeScreenData", async (req, res) => {
 // GET: Fetch all notifications
 router.get("/homeScreenData", async (req, res) => {
     try {
-      const notifications = await Notification.find();
+      const notifications = await HomeScreen.find();
       res.status(200).json(notifications);
     } catch (error) {
       console.error(error);

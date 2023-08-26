@@ -1,6 +1,21 @@
 const mongoose = require("mongoose");
 
-const NotificationSchema = mongoose.Schema({
+const HomeScreenSchema = mongoose.Schema({
+    title: {
+      required: true,
+      type: String,
+    },
+    date: {
+      required: true,
+      type: String,
+    },
+    description: {
+      required: true,
+      type: String,
+    },
+  });
+
+  const CompanySchema = mongoose.Schema({
     title: {
       required: true,
       type: String,
@@ -46,14 +61,16 @@ const NotificationSchema = mongoose.Schema({
   });
 
 
-  const Notification = mongoose.model("Home Screen Data", NotificationSchema);
+  const HomeScreen = mongoose.model("Home Screen Data", HomeScreenSchema);
   const Login7CE = mongoose.model("Userdata 7CE", Login7CESchema);
   const Login7IT = mongoose.model("Userdata 7IT", Login7ITSchema);
+  const Company = mongoose.model("Company Data", CompanySchema);
 
 
   module.exports = {
-    Notification,
+    HomeScreen,
     Login7CE,
     Login7IT,
+    Company,
   };
   
