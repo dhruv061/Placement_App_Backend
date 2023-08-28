@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { HomeScreen, Login7CE, Login7IT, Company } = require("../model/user"); 
+const { HomeScreen, Login7CE, Login7IT, Company,PlsdSchema } = require("../model/user"); 
 const jwt = require("jsonwebtoken");
 
 // POST: Create a new notification
@@ -34,7 +34,7 @@ router.get("/homeScreenData", async (req, res) => {
   }
 });
 
-  // POST: Create a new notification
+// POST: Create a new notification
 router.post("/companyData", async (req, res) => {
   try {
     const { title, date, description, package, location, bound, link } = req.body;
@@ -69,7 +69,40 @@ router.get("/companyData", async (req, res) => {
   }
 });
 
-  // POST: Userdata 7CE
+//POST: fetch all data of PLSD
+router.post("/PLSDdata", async (req, res) => {
+  try {
+    const { title, date, description } = req.body;
+
+    const newPLSDScreenData = new PlsdSchema({
+      title,
+      date,
+      description,
+    });
+
+    await newPLSDScreenData.save();
+
+    res.status(201).json({ message: "PLSD Screen Data created successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while creating PLSD Screen Data" });
+  }
+});
+
+
+//GET: fetch all data of PLSD
+router.get("/PLSDdata", async (req, res) => {
+  try {
+    const plsdData = await PlsdSchema.find();
+    res.status(200).json(plsdData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while fetching plsdData data" });
+  }
+});
+
+
+// POST: Userdata 7CE
 router.post("/userdata/7CE", async (req, res) => {
     try {
       const { email, password, branch } = req.body;

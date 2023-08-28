@@ -46,6 +46,21 @@ const CompanySchema = mongoose.Schema({
   },
 });
 
+const PLSDSchema = mongoose.Schema({
+  title: {
+    required: true,
+    type: String,
+  },
+  date: {
+    required: true,
+    type: String,
+  },
+  description: {
+    required: true,
+    type: String,
+  },
+});
+
 const Login7CESchema = mongoose.Schema({
   email: {
     required: true,
@@ -81,6 +96,7 @@ const HomeScreen = mongoose.model("Home Screen Data", HomeScreenSchema);
 const Login7CE = mongoose.model("Userdata 7CE", Login7CESchema);
 const Login7IT = mongoose.model("Userdata 7IT", Login7ITSchema);
 const Company = mongoose.model("Company Data", CompanySchema);
+const PlsdSchema = mongoose.model("PLSD Data", PLSDSchema);
 
 
 module.exports = {
@@ -88,5 +104,6 @@ module.exports = {
   Login7CE,
   Login7IT,
   Company,
+  PlsdSchema,
 };
   
