@@ -1,5 +1,6 @@
 const express = require("express");
 
+
 const router = express.Router();
 const { HomeScreen, Login7CE, Login7IT, Company,PlsdSchema } = require("../model/user"); 
 
@@ -19,7 +20,7 @@ router.post("/homeScreenData", async (req, res) => {
     res.status(201).json({ message: "Home Screen Data created successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "An error occurred while creating Home Screen Data" });
+    res.status(500).json({ error: "An error occurred while creating Home Screen Data: " + + error });
   }
 });
 
@@ -37,30 +38,33 @@ router.get("/homeScreenData", async (req, res) => {
 // POST: Create a new notification
 router.post("/companyData", async (req, res) => {
   try {
-    const { title,date,Requirements,SalaryOffered,Jobprofile,CompanyCriteria,InterviewProcess,Interviewlocation,Companylocation,Remarks,bond,ApplyLink,CompanyProfile } = req.body;
+    // Extract fields from req.body
+    const { title, date, Requirements, SalaryOffered, Jobprofile, CompanyCriteria, InterviewProcess, Interviewlocation, Companylocation, Remarks, bond, ApplyLink,CompanyProfileLink } = req.body;
 
+    // Create a new Company document
     const newCompany = new Company({
-    title,
-    date,
-    Requirements,
-    SalaryOffered,
-    Jobprofile,
-    CompanyCriteria,
-    InterviewProcess,
-    Interviewlocation,
-    Companylocation,
-    Remarks,
-    bond,
-    ApplyLink,
-    CompanyProfile,
+      title,
+      date,
+      Requirements,
+      SalaryOffered,
+      Jobprofile,
+      CompanyCriteria,
+      InterviewProcess,
+      Interviewlocation,
+      Companylocation,
+      Remarks,
+      bond,
+      ApplyLink,
+      CompanyProfileLink, 
     });
 
+    // Save the new Company document
     await newCompany.save();
 
     res.status(201).json({ message: "Company Data created successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "An error occurred while creating Company Data" });
+    res.status(500).json({ error: "An error occurred while creating Company Data: " + error });
   }
 });
 

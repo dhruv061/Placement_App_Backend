@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
+const path = require("path");
+const multer = require("multer");
 app.use(cors());
 
 //import file from the other file structure
@@ -12,6 +14,20 @@ const DB =
 
 //if we use local then it's get 3000 otherwise they automatically
 const PORT = process.env.PORT || 5000;
+
+// File Upload Setup using Multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    cb(null, "companyProfile-" + uniqueSuffix + ext);
+  },
+});
+
+const upload = multer({ storage });
 
 //middleware
 app.use(express.json());

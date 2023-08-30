@@ -64,7 +64,7 @@ const CompanySchema = mongoose.Schema({
     required: true,
     type: String,
   }, 
-  CompanyProfile: {
+  CompanyProfileLink: {
     type: String,
   },
 });
