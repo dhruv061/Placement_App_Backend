@@ -39,12 +39,13 @@ router.get("/homeScreenData", async (req, res) => {
 router.post("/companyData", async (req, res) => {
   try {
     // Extract fields from req.body
-    const { title, date, Requirements, SalaryOffered, Jobprofile, CompanyCriteria, InterviewProcess, Interviewlocation, Companylocation, Remarks, bond, ApplyLink,CompanyProfileLink } = req.body;
+    const { title, date,dateOfProcess, Requirements, SalaryOffered, Jobprofile, CompanyCriteria, InterviewProcess, Interviewlocation, Companylocation, Remarks, bond, ApplyLink,CompanyProfileLink } = req.body;
 
     // Create a new Company document
     const newCompany = new Company({
       title,
       date,
+      dateOfProcess,
       Requirements,
       SalaryOffered,
       Jobprofile,

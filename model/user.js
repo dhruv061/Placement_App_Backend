@@ -23,6 +23,10 @@ const CompanySchema = mongoose.Schema({
   date: {
     required: true,
     type: String,
+  }, 
+  dateOfProcess: {
+    required: true,
+    type: String,
   },
   Requirements: {
     required: true,
