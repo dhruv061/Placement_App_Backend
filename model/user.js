@@ -24,24 +24,47 @@ const CompanySchema = mongoose.Schema({
     required: true,
     type: String,
   },
-  description: {
+  Requirements: {
     required: true,
     type: String,
   },
-  package: {
+  SalaryOffered: {
     required: true,
     type: String,
   },
-  location: {
+  Jobprofile: {
+    required: true,
+    type: String,
+  },  
+  CompanyCriteria: {
     required: true,
     type: String,
   },
-  bound: {
+  InterviewProcess: {
     required: true,
     type: String,
   },
-  link: {
+  Interviewlocation: {
     required: true,
+    type: String,
+  },  
+  Companylocation: {
+    required: true,
+    type: String,
+  },
+  Remarks: {
+    required: true,
+    type: String,
+  },
+  bond: {
+    required: true,
+    type: String,
+  },
+  ApplyLink: {
+    required: true,
+    type: String,
+  }, 
+  CompanyProfile: {
     type: String,
   },
 });
@@ -90,6 +113,8 @@ const Login7ITSchema = mongoose.Schema({
     type: String,
   },
 });
+
+
 
 
 const HomeScreen = mongoose.model("Home Screen Data", HomeScreenSchema);

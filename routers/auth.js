@@ -1,7 +1,7 @@
 const express = require("express");
+
 const router = express.Router();
 const { HomeScreen, Login7CE, Login7IT, Company,PlsdSchema } = require("../model/user"); 
-const jwt = require("jsonwebtoken");
 
 // POST: Create a new notification
 router.post("/homeScreenData", async (req, res) => {
@@ -37,16 +37,22 @@ router.get("/homeScreenData", async (req, res) => {
 // POST: Create a new notification
 router.post("/companyData", async (req, res) => {
   try {
-    const { title, date, description, package, location, bound, link } = req.body;
+    const { title,date,Requirements,SalaryOffered,Jobprofile,CompanyCriteria,InterviewProcess,Interviewlocation,Companylocation,Remarks,bond,ApplyLink,CompanyProfile } = req.body;
 
     const newCompany = new Company({
-      title,
-      date,
-      description,
-      package,
-      location,
-      bound,
-      link,
+    title,
+    date,
+    Requirements,
+    SalaryOffered,
+    Jobprofile,
+    CompanyCriteria,
+    InterviewProcess,
+    Interviewlocation,
+    Companylocation,
+    Remarks,
+    bond,
+    ApplyLink,
+    CompanyProfile,
     });
 
     await newCompany.save();
@@ -115,7 +121,7 @@ router.post("/userdata/7CE", async (req, res) => {
   
       await newLogin7CE.save();
   
-      res.status(201).json({ message: "Successful" });
+      res.status(201).json({ message: "Successful Added student in 7th CE" });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Unsuccessful" });
@@ -158,7 +164,7 @@ router.post("/userdata/7IT", async (req, res) => {
 
     await newLogin7IT.save();
 
-    res.status(201).json({ message: "Successful" });
+    res.status(201).json({ message: "Successful Added student in 7th IT" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Unsuccessful" });
